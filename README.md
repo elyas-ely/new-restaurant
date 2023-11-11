@@ -1,2 +1,1 @@
-# My-restaurant
-# new-restaurant
+this is my app
