@@ -18,17 +18,28 @@ function EmptyScreen() {
   return <View />;
 }
 
-function Name({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Name Screen</Text>
-      <Button title="Go to Feed" onPress={() => navigation.navigate("Feed")} />
-    </View>
-  );
-}
-
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+
+function RootDrawer() {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Home"
+      drawerPosition="right" // Set drawerPosition to 'right'
+      drawerStyle={{
+        transform: [{ translateX: -5 }], // Adjust the translateX value as needed
+      }}
+    >
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen
+        name="About"
+        component={About}
+        // options={{ headerShown: false }}
+      />
+      <Drawer.Screen name="Settings" component={EmptyScreen} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function Navigation() {
   const [showOnboarding, setShowOnboarding] = useState(null);
@@ -40,7 +51,7 @@ export default function Navigation() {
     let onboarded = await getItem("onboarded");
     if (onboarded == 1) {
       // hide onboarding
-      setShowOnboarding(true);
+      setShowOnboarding(false);
     } else {
       // show onboarding
       setShowOnboarding(true);
@@ -51,15 +62,18 @@ export default function Navigation() {
     return null;
   }
 
+  // if (showOnboarding) {
+  //   return <OnboardingScreen />;
+  // }
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         //  --------------------------------------- main -------
         // initialRouteName={showOnboarding ? "Onboarding" : "RootDrawer"}
-
+        // initialRouteName={showOnboarding ? "Onboarding" : "Welcome"}
         //  --------------------------------------- Test -------
-        // initialRouteName={showOnboarding ? "Welcome" : "Welcome"}
-
+        initialRouteName={showOnboarding ? "Welcome" : "Welcome"}
         //  --------------------------------------- Extra test -------
         // initialRouteName={showOnboarding ? "Welcome" : "RootDrawer"}
         screenOptions={{ headerShown: false }}
@@ -99,25 +113,5 @@ export default function Navigation() {
         />
       </Stack.Navigator>
     </NavigationContainer>
-  );
-}
-
-function RootDrawer() {
-  return (
-    <Drawer.Navigator
-      initialRouteName="Home"
-      drawerPosition="right" // Set drawerPosition to 'right'
-      drawerStyle={{
-        transform: [{ translateX: -10 }], // Adjust the translateX value as needed
-      }}
-    >
-      <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen
-        name="About"
-        component={About}
-        // options={{ headerShown: false }}
-      />
-      <Drawer.Screen name="Settings" component={EmptyScreen} />
-    </Drawer.Navigator>
   );
 }

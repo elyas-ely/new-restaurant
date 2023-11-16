@@ -67,12 +67,8 @@ export default function Header() {
               <Text className="text-xs">{basketItems.length}</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
-            <Bars3BottomRightIcon
-              size={hp(5)}
-              color="gray"
-              onPress={() => openDrawer()}
-            />
+          <TouchableOpacity onPress={() => openDrawer()}>
+            <Bars3BottomRightIcon size={hp(5)} color="gray" />
           </TouchableOpacity>
         </View>
 

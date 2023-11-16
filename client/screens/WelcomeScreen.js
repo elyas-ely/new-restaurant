@@ -27,7 +27,7 @@ export default function WelcomeScreen() {
       300
     );
 
-    setTimeout(() => navigation.navigate("Home"), 2500);
+    setTimeout(() => navigation.navigate("RootDrawer"), 2500);
   }, []);
   return (
     <View
