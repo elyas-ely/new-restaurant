@@ -74,18 +74,20 @@ export default function HomeScreen() {
   return (
     <>
       <Header />
-      <SafeAreaView className="bg-slate-100  relative">
+      <SafeAreaView className=" flex-1 bg-slate-100  relative">
         <StatusBar
-          backgroundColor={themeColors.bgColor(0.2)}
+          // backgroundColor={themeColors.bgColor(0.2)}
           barStyle="dark-content"
         />
 
         {/* main */}
         <ScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{
-            paddingBottom: 370,
-          }}
+          contentContainerStyle={
+            {
+              // paddingBottom: 20,
+            }
+          }
           style={{ scaleX: -1 }}
         >
           {/* featured */}

@@ -4,12 +4,15 @@ import { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
-import About from "./screens/About";
+import AboutScreen from "./screens/AboutScreen";
 import RestaurantScreen from "./screens/RestaurantScreen";
 import CartScreen from "./screens/CartScreen";
 import PreparingOrderScreen from "./screens/PreparingOrderScreen";
 import DeliveryScreen from "./screens/DeliveryScreen";
 import OnboardingScreen from "./screens/OnboardingScreen";
+import CustomDrawer from "./components/CustomDrawer";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import { themeColors } from "./theme";
 
 import { getItem } from "./utils/asyncStorage";
 import WelcomeScreen from "./screens/WelcomeScreen";
@@ -25,18 +28,72 @@ function RootDrawer() {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerPosition="right" // Set drawerPosition to 'right'
-      drawerStyle={{
-        transform: [{ translateX: -5 }], // Adjust the translateX value as needed
+      drawerContent={(props) => <CustomDrawer {...props} />}
+      // drawerPosition="right" // Set the drawer position to 'right'
+      screenOptions={{
+        drawerPosition: "right",
+        drawerActiveBackgroundColor: themeColors.bgColor(1),
+        drawerActiveTintColor: "#fff",
+        drawerInactiveTintColor: "#333",
+        drawerInactiveBackgroundColor: "#fff",
+        drawerLabelStyle: {
+          marginRight: -25,
+          // fontFamily: "Roboto-Medium",
+          fontSize: 15,
+        },
       }}
     >
-      <Drawer.Screen name="Home" component={HomeScreen} />
+      {/* <Drawer.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Ionicons name="home-outline" size={22} color={color} />
+          ),
+        }}
+      /> */}
+      <Drawer.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="home-outline" size={22} color={color} />
+          ),
+          drawerLabel: ({ focused, color, size }) => (
+            <Text style={{ marginLeft: 10, fontSize: 18, color }}>
+              اصلي پاڼه
+            </Text>
+          ),
+        }}
+      />
+
       <Drawer.Screen
         name="About"
-        component={About}
+        component={AboutScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Ionicons name="chatbox-ellipses-outline" size={22} color={color} />
+          ),
+          drawerLabel: ({ focused, color, size }) => (
+            <Text style={{ marginLeft: 10, fontSize: 18, color }}>
+              زموږ باره کي
+            </Text>
+          ),
+        }}
         // options={{ headerShown: false }}
       />
-      <Drawer.Screen name="Settings" component={EmptyScreen} />
+      <Drawer.Screen
+        name="Setting"
+        component={EmptyScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Ionicons name="settings-outline" size={22} color={color} />
+          ),
+          drawerLabel: ({ focused, color, size }) => (
+            <Text style={{ marginLeft: 10, fontSize: 18, color }}>تنظیمات</Text>
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -94,7 +151,7 @@ export default function Navigation() {
         <Stack.Screen
           name="About"
           options={{ presentation: "modal", headerShown: false }}
-          component={About}
+          component={AboutScreen}
         />
         <Stack.Screen
           name="Cart"

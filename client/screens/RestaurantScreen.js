@@ -5,6 +5,8 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  SafeAreaView,
+  FlatList,
 } from "react-native";
 import React, { useEffect, useLayoutEffect } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -60,7 +62,8 @@ export default function RestaurantScreen() {
   return (
     <>
       <BasketIcon />
-      <ScrollView>
+      <SafeAreaView className="flex-1 mt-5">
+        {/* <ScrollView> */}
         <View className="relative">
           <Image
             className="w-full h-72"
@@ -75,43 +78,25 @@ export default function RestaurantScreen() {
         </View>
         <View
           style={{ borderTopLeftRadius: 40, borderTopRightRadius: 40 }}
-          className="bg-white -mt-12 pt-6"
+          className="bg-slate-100 -mt-12 pt-6 relative"
         >
-          <View className="px-5">
+          <View className="px-6   ">
             <Text className="text-3xl font-bold">{title}</Text>
-            {/* copy this code from restaurant card */}
-            <View className="flex-row space-x-2 ">
-              {/* <View className="flex-row items-center space-x-1">
-                  <Image
-                    source={require("../assets/images/fullStar.png")}
-                    className="h-4 w-4"
-                  />
-                  <Text className="text-xs">
-                    <Text className="text-green-700">{rating}</Text>
-                    <Text className="text-gray-700"> (4.6k review)</Text> ·{" "}
-                    <Text className="font-semibold text-gray-700">{type}</Text>
-                  </Text>
-                </View> */}
-              {/* <View className="flex-row items-center space-x-1">
-                  <Icon.MapPin
-                    color="gray"
-                    width={15}
-                    height={15}
-                  />
-                  <Text className="text-gray-800 text-xs">
-                    {" "}
-                    Nearby · {address}
-                  </Text>
-                </View> */}
-            </View>
             <Text className="text-gray-500 mb-3">{description}</Text>
+            <Text className=" py-4 text-2xl font-bold">مینیو</Text>
           </View>
         </View>
-        <View className="pb-24 bg-white">
-          <Text className="px-4 py-4 text-2xl font-bold">مینیو</Text>
-          {/* dishes */}
-          {dishes.map((dish) => {
-            return (
+        <View className="flex-1  ">
+          <FlatList
+            horizontal={false}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{
+              paddingBottom: 90,
+            }}
+            // style={{ transform: [{ scaleX: -1 }] }}
+            data={dishes}
+            keyExtractor={(dish) => dish._id}
+            renderItem={({ item: dish }) => (
               <DishRow
                 key={dish._id}
                 id={dish._id}
@@ -120,10 +105,11 @@ export default function RestaurantScreen() {
                 price={dish.price}
                 image={dish.image}
               />
-            );
-          })}
+            )}
+          />
         </View>
-      </ScrollView>
+        {/* </ScrollView> */}
+      </SafeAreaView>
     </>
   );
 }

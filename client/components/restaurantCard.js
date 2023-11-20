@@ -64,22 +64,11 @@ export default function RestaurantCard({
         <View className="px-4 pb-4 space-y-1 flex items-end">
           <Text className="text-lg font-bold pt-2">{title}</Text>
           <View className="flex-row items-center space-x-1">
-            {/* <Image
-              source={require("../assets/images/fullStar.png")}
-              className="h-4 w-4"
-            /> */}
             <Text className="text-xs ">
-              {/* <Text className="text-green-700">{rating}</Text> */}
-              {/* <Text className="text-gray-700"> ({reviews} review)</Text> ·{" "} */}
               <Text className="font-semibold text-gray-700">خوندور {type}</Text>
             </Text>
           </View>
           <View className="flex-row items-center ">
-            {/* <Icon.MapPin
-              color="gray"
-              width={15}
-              height={15}
-            /> */}
             <Text className="text-gray-700 text-xs"> د مختلفو ډولونو سره</Text>
           </View>
         </View>

@@ -34,12 +34,13 @@ export default function Categories() {
   }, []);
 
   return (
-    <View className="mt-4 flex ">
+    <View className="mt-4 flex-1">
       <ScrollView
         // className="p-4"
         horizontal
         showsHorizontalScrollIndicator={false}
         className="overflow-visible"
+        // className="overflow-hidden"
         contentContainerStyle={{
           paddingHorizontal: 15,
         }}

@@ -13,7 +13,7 @@ export default function FeatureRow({ id, title, description, restaurants }) {
   //   restaurants.filter((restaurant) => restaurant.name.includes(text));
   // };
   return (
-    <SafeAreaView className="">
+    <SafeAreaView className="flex-1">
       <View className="flex-row justify-between items-center px-4">
         <TouchableOpacity>
           <Text style={{ color: themeColors.text }} className="font-semibold">
